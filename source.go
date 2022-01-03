@@ -1,20 +1,13 @@
 package godoc_generics_issue
 
-import "fmt"
-
-// Print prints the elements of a slice.
-// It should be possible to call this with any slice value.
-func Print[T any](s []T) {
-	for _, v := range s {
-		fmt.Println(v)
-	}
+type MyType[T any] struct {
+	i T
 }
 
-// Slice is not showing up in Godoc.
-func Slice[T any]() []T {
-	return nil
+func (m *MyType[T]) Set(i T) {
+	m.i = i
 }
 
-func Single[T any]() *T {
-	return nil
+func (m *MyType[T]) Get() T {
+	return m.i
 }
